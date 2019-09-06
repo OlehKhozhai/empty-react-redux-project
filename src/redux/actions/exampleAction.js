@@ -1,24 +1,16 @@
 import axios from 'axios';
-import {
-  EXAMPLE_CONST,
-  EXAMPLE_ERROR,
-  EXAMPLE_REQUEST,
-  EXAMPLE_RESPONSE,
-} from '../constants';
+import { EXAMPLE_ERROR, EXAMPLE_REQUEST, EXAMPLE_RESPONSE } from '../types';
 
-const exampleAsync = {
-  request: () => ({ type: EXAMPLE_REQUEST }),
-  response: payload => ({ type: EXAMPLE_RESPONSE, payload }),
-  error: error => ({ type: EXAMPLE_ERROR, payload: error }),
-};
-
-export const exampleSyncAction = payload => ({ type: EXAMPLE_CONST, payload });
+export const exampleSyncAction = payload => ({
+  type: EXAMPLE_RESPONSE,
+  payload,
+});
 
 export const exampleAsyncAction = query => dispatch => {
-  dispatch(exampleAsync.request());
+  dispatch({ type: EXAMPLE_REQUEST });
 
   axios
     .get(`some api ${query}`)
-    .then(res => dispatch(exampleAsync.response(res)))
-    .catch(error => dispatch(exampleAsync.error(error)));
+    .then(res => dispatch({ type: EXAMPLE_RESPONSE, payload: res }))
+    .catch(error => dispatch({ type: EXAMPLE_ERROR, payload: error }));
 };

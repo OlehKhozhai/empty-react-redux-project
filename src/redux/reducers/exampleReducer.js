@@ -1,9 +1,4 @@
-import {
-  EXAMPLE_REQUEST,
-  EXAMPLE_RESPONSE,
-  EXAMPLE_ERROR,
-  EXAMPLE_CONST,
-} from '../constants';
+import { EXAMPLE_REQUEST, EXAMPLE_RESPONSE, EXAMPLE_ERROR } from '../types';
 
 const initialState = {
   example: [],
@@ -29,13 +24,6 @@ const exampleReducer = (state = initialState, { type, payload }) => {
     case EXAMPLE_ERROR:
       return {
         ...state,
-        isLoading: false,
-      };
-
-    case EXAMPLE_CONST:
-      return {
-        ...state,
-        ...payload,
         isLoading: false,
       };
 

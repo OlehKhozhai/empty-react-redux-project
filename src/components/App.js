@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
+import css from './App.module.scss';
 
-const App = () => <div className="App">App</div>;
+const App = () => <div className={css.App}>App</div>;
 
 export default App;
